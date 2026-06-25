@@ -137,17 +137,24 @@ namespace CardGames.GameLogic
 		/// The player hit the top of the cards "snap"! :)
 		/// Check if the top two cards' ranks match.
 		/// </summary>
-		public void PlayerHit (int player)
-		{
-    	if ( player >= 0 && player < _score.Length &&
+	public void PlayerHit (int player)
+{
+    if ( player >= 0 && player < _score.Length &&
          IsStarted &&
          _topCards [0] != null &&
          _topCards [0].Rank == _topCards [1].Rank)
-    	{
+    {
         _score[player]++;
-    	}
+    }
+    else if (player >= 0 && player < _score.Length)
+    {
+        _score[player]--;
+    }
 
-    	_gameTimer.Stop();
+    _gameTimer.Stop();
+    _started = false;
+}
+
 
    		 _started = false;
 		}
